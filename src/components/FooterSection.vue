@@ -100,7 +100,10 @@ const scrollTo = (id: string) => {
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
         <p>© {{ year }} Can Segura Hotel & Restaurant. Todos los derechos reservados.</p>
-        <button class="back-top" @click="scrollTop" aria-label="Volver arriba">↑</button>
+        <div class="footer-bottom-right">
+          <a href="https://icorebyte.com" target="_blank" rel="noopener" class="made-by">Hecho por icorebyte.com</a>
+          <button class="back-top" @click="scrollTop" aria-label="Volver arriba">↑</button>
+        </div>
       </div>
     </div>
   </footer>
@@ -258,6 +261,19 @@ const scrollTo = (id: string) => {
   justify-content: space-between;
 }
 .footer-bottom p { font-size: 0.78rem; color: var(--text-faint); }
+
+.footer-bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.made-by {
+  font-size: 0.75rem;
+  color: var(--text-faint);
+  transition: color var(--transition);
+}
+.made-by:hover { color: var(--accent); }
 
 .back-top {
   width: 36px; height: 36px;
