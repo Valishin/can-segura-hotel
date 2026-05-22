@@ -3,6 +3,8 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const isScrolled = ref(false)
 const isMenuOpen = ref(false)
+const activeLang = ref('ES')
+const langs = ['CA', 'ES', 'EN', 'FR']
 
 const handleScroll = () => { isScrolled.value = window.scrollY > 60 }
 
@@ -30,6 +32,16 @@ const scrollTo = (id: string) => {
         <li><button @click="scrollTo('ubicacion')">Ubicación</button></li>
         <li><button class="nav-cta" @click="scrollTo('contacto')">Contacto</button></li>
       </ul>
+
+      <div class="lang-switcher">
+        <button
+          v-for="lang in langs"
+          :key="lang"
+          :class="['lang-btn', { active: lang === activeLang }]"
+          @click="activeLang = lang"
+          :aria-label="`Cambiar idioma a ${lang}`"
+        >{{ lang }}</button>
+      </div>
 
       <button class="hamburger" :class="{ open: isMenuOpen }" @click="isMenuOpen = !isMenuOpen" aria-label="Menú">
         <span /><span /><span />
@@ -187,8 +199,49 @@ const scrollTo = (id: string) => {
 }
 .mobile-menu button:hover { color: var(--accent); }
 
+/* Lang switcher */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-left: 0.5rem;
+  transition: border-color var(--transition);
+}
+.scrolled .lang-switcher {
+  border-color: var(--border);
+}
+
+.lang-btn {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.55);
+  padding: 0.35rem 0.55rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  transition: color var(--transition), background var(--transition);
+  line-height: 1;
+}
+.lang-btn:last-child { border-right: none; }
+.lang-btn:hover { color: rgba(255, 255, 255, 0.9); }
+.lang-btn.active {
+  color: var(--accent-dark);
+  background: #fff;
+}
+
+.scrolled .lang-btn { color: var(--text-faint); border-right-color: var(--border); }
+.scrolled .lang-btn:hover { color: var(--text-muted); }
+.scrolled .lang-btn.active {
+  color: #fff;
+  background: var(--accent);
+}
+
 @media (max-width: 768px) {
   .nav-links { display: none; }
+  .lang-switcher { display: none; }
   .hamburger { display: flex; }
   .mobile-menu { display: block; }
 }

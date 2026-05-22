@@ -8,15 +8,61 @@ const scrollTo = (id: string) => {
 
 <template>
   <footer class="footer">
+
+    <!-- Franja de reservas -->
+    <div class="reservas-bar">
+      <div class="container reservas-inner">
+        <div class="reservas-text">
+          <span class="reservas-label">¿Listo para tu escapada?</span>
+          <p>Consulta disponibilidad y reserva tu estancia en Can Segura</p>
+        </div>
+        <button class="reservas-btn">Reservar ahora</button>
+      </div>
+    </div>
+
     <div class="footer-inner container">
+      <!-- Brand + redes -->
       <div class="footer-brand">
         <button class="footer-logo" @click="scrollTop">
           <span class="logo-text">Can Segura</span>
           <span class="logo-sub">Hotel & Restaurant</span>
         </button>
         <p class="footer-tagline">Masia catalana · Tradición · Naturaleza</p>
+
+        <div class="social-links">
+          <!-- Instagram -->
+          <a href="#" class="social-icon" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" class="social-icon" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+          <!-- TripAdvisor -->
+          <a href="#" class="social-icon" aria-label="TripAdvisor">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="7" cy="14" r="3"/>
+              <circle cx="17" cy="14" r="3"/>
+              <path d="M2 9h20M7 9a5 5 0 0 1 10 0"/>
+            </svg>
+          </a>
+          <!-- Google -->
+          <a href="#" class="social-icon" aria-label="Google">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M17.5 12H12v2.5h3.2A3.5 3.5 0 0 1 8.5 12a3.5 3.5 0 0 1 6.1-2.3L16.2 8A6 6 0 1 0 18 12"/>
+            </svg>
+          </a>
+        </div>
       </div>
 
+      <!-- Columnas -->
       <div class="footer-links-grid">
         <div class="footer-col">
           <h5>Navegación</h5>
@@ -66,6 +112,54 @@ const scrollTo = (id: string) => {
   border-top: 1px solid var(--border);
 }
 
+/* ---- Reservas bar ---- */
+.reservas-bar {
+  background: var(--accent);
+  padding: 2rem 0;
+}
+
+.reservas-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.reservas-label {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.2rem;
+}
+
+.reservas-text p {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.reservas-btn {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  background: #fff;
+  padding: 0.9rem 2.2rem;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  transition: background var(--transition), transform 0.2s;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+.reservas-btn:hover {
+  background: var(--bg-primary);
+  transform: translateY(-2px);
+}
+
+/* ---- Footer inner ---- */
 .footer-inner {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -101,8 +195,33 @@ const scrollTo = (id: string) => {
   font-size: 0.8rem;
   color: var(--text-faint);
   letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
 }
 
+/* ---- Social icons ---- */
+.social-links {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.social-icon {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.social-icon:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(139, 115, 85, 0.06);
+}
+
+/* ---- Columns ---- */
 .footer-links-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -131,6 +250,7 @@ const scrollTo = (id: string) => {
 .footer-col li button:hover,
 .footer-col li a:hover { color: var(--accent); }
 
+/* ---- Bottom bar ---- */
 .footer-bottom { padding: 1.25rem 0; }
 .footer-bottom-inner {
   display: flex;
@@ -155,6 +275,7 @@ const scrollTo = (id: string) => {
 @media (max-width: 900px) {
   .footer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .footer-links-grid { grid-template-columns: 1fr 1fr; }
+  .reservas-inner { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 500px) {
   .footer-links-grid { grid-template-columns: 1fr; }
